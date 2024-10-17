@@ -1,0 +1,58 @@
+name: FreQuency (R179)
+sha1: 997c4aca888e9a2661fbaacacfd54c84e5cbd8a1
+options:
+    # paths
+    basename: SCUS_971.25
+    target_path: orig/SCUS_971.25
+    base_path: ..
+    
+    asm_path: asm
+    src_path: src
+    build_path: build
+    
+    extensions_path: tools/splat_ext
+    symbol_addrs_path: config/symbol_addrs.txt
+    undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+    undefined_syms_auto_path:  config/undefined_syms_auto.txt
+    
+    # compiler 
+    compiler: EEGCC
+    platform: ps2
+
+    ld_bss_contains_common: False
+    
+    string_encoding: ASCII
+    rodata_string_guesser_level: 2 # improve string detection
+    disasm_unknown: True
+    named_regs_for_c_funcs: False
+    gp_value: 0x8AFBA0
+    # subalign: 4
+    
+    find_file_boundaries: False
+    section_order: [".text", ".vutext", ".data", ".rodata", ".gcc_except_table", ".ctors", ".dtors", ".frames", ".scommon", ".bss"]
+segments:
+    - [0, databin, elf_header]
+    - name: main
+      type: code
+      start: 0x1000
+      vram: 0x100000
+      bss_size: 0x8327B
+      subalign: null
+      subsegments:
+        - [0x1000, cpp, dummy1]
+        - [0x1040, asm]
+        - [0x3F20E0, asm, rndtex]
+        - [0x3F6378, asm, mmesh]  
+        - [0x5820E0, databin, vutext]
+        - [0x583980, data]
+        - [0x6ED600, rodata]
+        - [0x77B8E0, databin, gcc_except_table]
+        - [0x7A8704, ctor, ctors]
+        - { start: 0x7A8AC4, type: data, name: dtors, linker_section_order: .dtors }
+        - [0x7A8BA8, eh_frame, frames]
+        - { start: 0x7A8BB0, type: sbss, name: scommon, vram: 0x8A7BB0, linker_section_order: .scommon }
+        - { start: 0x7A8BB0, type: bss, name: bss, vram: 0x8A7E00 }
+
+    - { start: 0x7A8BD8, type: databin, name: mdebug, linker_section_order: .mdebug }
+    - { start: 0xCA3CA8, type: databin, name: .DVP.ovlytab, linker_section_order: .DVP.ovlytab }
+    - [0xCA566A]
