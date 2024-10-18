@@ -7,6 +7,7 @@ options:
     base_path: ..
     
     asm_path: asm
+    nonmatchings_path: asm/nonmatchings
     src_path: src
     build_path: build
     
@@ -39,18 +40,59 @@ segments:
       bss_size: 0x8327B
       subalign: null
       subsegments:
-        - [0x1000, cpp, dummy1]
-        - [0x1040, asm]
-        - [0x3F20E0, asm, rndtex]
-        - [0x3F6378, asm, mmesh]  
+        - [0x1000, asm, dummy1]
+        - [0x1040, asm, AppActiveFilter]
+        - [0x1440, asm, AppBarSequencer]
+        - [0x2090, asm, AppControllerData]
+        - [0x2338, asm, AppEnableMgr]
+        - [0x6EE0, asm, AppGameManagerImpl]
+        - [0xD7E0, asm, AppGameRecorder]
+        - [0x12D30, asm, AppGameStats]
+        - [0x13C98, asm, AppGamer]
+        - [0x1AC08, asm, AppGlobals]
+        - [0x1DFD8, asm, AppInputMap]
+        - [0x22BC0, asm, AppLocalPlayer]
+        - [0x27BF0, asm, AppNetPlayer]
+        - [0x2B128, asm, AppPlayMap]
+        - [0x2cbd0, asm, AppPlayMapLinear]
+        - [0x31ef8, asm, AppPlayMapRepeatRing]
+        - [0x37b50, asm, AppPlayMapRing]
+        - [0x38490, asm, AppPlaySoundPS2]
+
+        - [0x43A78, asm, AppRendererBase]
+        - [0x43E60, asm, AppSynth]
+        - [0x44770, asm, AppTickTask]
+        - [0x44EC0, asm, AppTimeTask]
+        - [0x45350, asm, AppTrackSelector]
+        - [0x4A5B0, asm, BGTrackGraph]
+        - [0x4B038, asm, CampaignStats]
+        - [0x50B78, asm, ChunkIDs]
+        - [0x50DD8, asm, Chunks]
+        - [0xA26C0, asm, DiskSwapperPS2]
+        - [0xA2C40, asm, FadeScreen]
+
+        - [0x3C9F00, asm, rndshape]
+        - [0x3D0C30, asm, utl/attach]
+        - [0x3D0D48, asm, rndobj/rndblur]
+        - [0x3D4AA8, asm, memlog]
+        - [0x3D6738, asm, rndobj/rndmat]
+        - [0x3E34F0, asm, rndobj/rndtext]
+        - [0x3EC088, asm, rndutl/rnddbg]    
+        - [0x3EC4E8, asm, Ps2Utl]
+        - [0x3EE308, asm, rndobj/rndview]
+        - [0x3F20E0, asm, rndobj/rndtex]
+        - [0x3F6378, asm, rndobj/rndmmesh]
+        - [0x3FA3B0, asm, JoypadPS2]
         - [0x5820E0, databin, vutext]
         - [0x583980, data]
         - [0x6ED600, rodata]
+        - [0x755940, rodata, utl/attach]
+        - [0x7559C8, rodata]
         - [0x77B8E0, databin, gcc_except_table]
         - [0x7A8704, ctor, ctors]
         - { start: 0x7A8AC4, type: data, name: dtors, linker_section_order: .dtors }
         - [0x7A8BA8, eh_frame, frames]
-        - { start: 0x7A8BB0, type: sbss, name: scommon, vram: 0x8A7BB0, linker_section_order: .scommon }
+        - { start: 0x7A8BB0, type: sbss, name: scommon, vram: 0x8A7BB0, linker_section_order: .scommon, bss_contains_common: true }
         - { start: 0x7A8BB0, type: bss, name: bss, vram: 0x8A7E00 }
 
     - { start: 0x7A8BD8, type: databin, name: mdebug, linker_section_order: .mdebug }
