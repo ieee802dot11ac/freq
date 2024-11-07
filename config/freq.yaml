@@ -262,7 +262,8 @@ segments:
         - [0x3233f0, asm, TnlOverlay]
         - [0x33f0c0, asm, TnlRenderer]
         - [0x345e50, asm, TnlTunnel]
-        - [0x36b8b0, asm, rndgen]
+        - [0x36A178, asm, sdk/crt0]
+        - [0x36B8B0, asm, rndgen]
         - [0x372058, asm, zone]
         - [0x372b30, asm, midi_main]
         - [0x377468, asm]
@@ -359,7 +360,7 @@ segments:
         - [0x4A7390, asm, sdk/newlib/libc/stdlib/realloc]
         - [0x4A73C0, asm, sdk/libio/outfloat]
         - [0x4A7980, asm, bltinmodule]
-        - [0x4A7E28, asm, sdk/newlib/libc/machine/r5900/strchr]
+        - [0x4AAE28, asm, sdk/newlib/libc/machine/r5900/strchr]
         - [0x4AAFB8, asm, modsupport]
         - [0x4ABF88, asm, strfile]
         - [0x4AC2F8, asm, sdk/newlib/libc/stdio/stdio]
@@ -509,20 +510,20 @@ segments:
         - [0x777D70, rodata, python/cPickle]
 
 
-        - [0x77B8E0, databin, gcc_except_table]
+        - { start: 0x77B8E0, type: databin, name: gcc_except_table, linker_section_order: .gcc_except_table}
         - [0x7A8704, ctor, ctors]
         - { start: 0x7A8AC4, type: data, name: dtors, linker_section_order: .dtors }
         - [0x7A8BA8, eh_frame, frames]
-        - { start: 0x7A8BB0, type: sbss, name: scommon, vram: 0x8A7BB0, linker_section_order: .scommon, bss_contains_common: true }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E00, vram: 0x8A7E00 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E08, vram: 0x8A7E08 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E10, vram: 0x8A7E10 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E18, vram: 0x8A7E18 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E20, vram: 0x8A7E20 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E28, vram: 0x8A7E28 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E30, vram: 0x8A7E30 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E38, vram: 0x8A7E38 }
-        - { start: 0x7A8BB0, type: bss, name: bss_8A7E40, vram: 0x8A7E40 }
+        #- { start: 0x7A8BB0, type: sbss, name: scommon, vram: 0x8A7BB0, linker_section_order: .scommon }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E00, vram: 0x8A7E00, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E08, vram: 0x8A7E08, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E10, vram: 0x8A7E10, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E18, vram: 0x8A7E18, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E20, vram: 0x8A7E20, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E28, vram: 0x8A7E28, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E30, vram: 0x8A7E30, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E38, vram: 0x8A7E38, linker_section_order: .bss }
+        #- { start: 0x7A8BB0, type: bss, name: bss_8A7E40, vram: 0x8A7E40, linker_section_order: .bss }
 
     - { start: 0x7A8BD8, type: databin, name: mdebug, linker_section_order: .mdebug }
     - { start: 0xCA3CA8, type: databin, name: .DVP.ovlytab, linker_section_order: .DVP.ovlytab }
